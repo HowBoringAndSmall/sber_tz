@@ -21,7 +21,6 @@ class Product(models.Model):
 class Purchase(models.Model):
     client = models.ForeignKey('market_app.Client', on_delete=models.CASCADE)
     product = models.ForeignKey('market_app.Product', on_delete=models.CASCADE)
-    purchase_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.client.name} bought {self.product.name} on {self.purchase_date}"
+        return f"{self.client.name} bought {self.product.name}"

@@ -4,3 +4,5 @@ from .models import Client, Product, Purchase
 admin.site.register(Client)
 admin.site.register(Product)
 admin.site.register(Purchase)
+
+#  добавить поиск
