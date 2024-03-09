@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 
-from .data_access_layer.queries import create_purchase
+from .data_access_layer.queries import create_purchase, get_all_purchase, get_all_product, get_full_purchase
 from .models import Client, Product, Purchase
 from .serializers.client import ClientSerializer
 from .serializers.product import ProductSerializer
@@ -11,7 +11,7 @@ from .serializers.purchase import PurchaseSerializer
 
 
 class ProductViewSet(viewsets.ViewSet):
-    queryset = Product.objects.all()
+    queryset = get_all_product()
 
     def list(self, request):
         serializer = ProductSerializer(self.queryset, many=True)
@@ -30,7 +30,7 @@ class ProductViewSet(viewsets.ViewSet):
 
 
 class PurchaseViewSet(viewsets.ViewSet):
-    queryset = Purchase.objects.all()
+    queryset = get_all_purchase()
 
     def create(self, request, *args, **kwargs):
         serializer = PurchaseSerializer(data=request.data)
@@ -54,7 +54,7 @@ class PurchaseViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'], url_path='client_purchase_with_product')
     def client_purchase_with_product(self, request):
         client_id = self.request.query_params.get('client', None)
-        purchases = Purchase.objects.filter(client=client_id).select_related('product')
+        purchases = get_full_purchase(client_id)
         if not purchases:
             return Response({'error': f'No purchases found for client with id {client_id}'},
                             status=status.HTTP_404_NOT_FOUND)

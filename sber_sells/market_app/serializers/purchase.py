@@ -1,14 +1,16 @@
 from datetime import timezone
 
 from rest_framework import serializers
+
+from ..data_access_layer.queries import get_all_client, get_all_product
 from ..models import Purchase, Client, Product
 
 
 class PurchaseSerializer(serializers.ModelSerializer):
 
     id = serializers.IntegerField(read_only=True)
-    client = serializers.PrimaryKeyRelatedField(queryset=Client.objects.all())
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    client = serializers.PrimaryKeyRelatedField(queryset=get_all_client())
+    product = serializers.PrimaryKeyRelatedField(queryset=get_all_product())
 
     class Meta:
         model = Purchase
