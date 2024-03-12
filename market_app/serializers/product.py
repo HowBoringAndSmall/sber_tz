@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Purchase, Client, Product
+from market_app.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):

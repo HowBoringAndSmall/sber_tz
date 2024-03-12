@@ -1,4 +1,4 @@
-from ..models import Client, Product, Purchase
+from market_app.models import Client, Purchase, Product
 
 
 def get_all_client():
@@ -14,11 +14,15 @@ def get_all_purchase():
 
 
 def get_client_by_id(client_id):
-    return Client.objects.get(pk=client_id)
+    return Client.objects.filter(pk=client_id).first()
 
 
 def get_product_by_id(product_id):
-    return Product.objects.get(pk=product_id)
+    return Product.objects.filter(pk=product_id).first()
+
+
+def get_purchase_by_id(purchase_id):
+    return Purchase.objects.filter(pk=purchase_id).first()
 
 
 def create_purchase(data):
