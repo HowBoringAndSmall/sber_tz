@@ -1,0 +1,1 @@
+0 * * * * cd /path/to/your/project && python manage.py transferproduct >> /app/cron.log 2>&1

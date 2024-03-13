@@ -18,7 +18,3 @@ class ProductDocument(Document):
             'price',
         ]
 
-    # id = fields.KeywordField(attr='id')
-    # name = fields.TextField(attr='name')
-    # description = fields.TextField(attr='description')
-    # price = fields.FloatField(attr='price')

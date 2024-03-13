@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-(c0+!ltxn_z*x6-*leo^zfs^5k3bvve^7(513r37d8e#76mq=e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+#
+# APPEND_SLASH = False
 
 
 # Application definition
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.ContentTypeMiddleware',
 ]
 
 ROOT_URLCONF = 'sber_sells.urls'
@@ -81,7 +84,7 @@ DATABASES = {
         'NAME': 'TestProduction',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': 'db',  # db
         'PORT': '5432',
     }
 }
@@ -130,8 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'https://localhost:9200',
-        'http_auth': ('elastic', 'iIqTGS1qWa3RyTa*c1b1'),
+        'hosts': 'http://elasticsearch:9200',
         'verify_certs': False,
     }
 }

@@ -17,8 +17,3 @@ class PurchaseSerializer(serializers.ModelSerializer):
         fields = ['id', 'client', 'product']
         read_only_fields = ['id']
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['client'] = instance.client.name
-        representation['product'] = instance.product.name
-        return representation

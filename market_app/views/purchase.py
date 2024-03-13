@@ -1,7 +1,6 @@
 from django.forms import model_to_dict
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 
 from market_app.data_access_layer.queries import get_all_purchase, create_purchase, get_full_purchase, \
@@ -43,9 +42,4 @@ class PurchaseViewSet(viewsets.ViewSet):
 
         serializer = PurchaseSerializer(purchases, many=True)
         return Response(serializer.data)
-
-
-
-
-
 
